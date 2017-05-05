@@ -14,8 +14,8 @@ _You will need a psql database and Ruby to use this app._
 * _clone this repository to desktop_
 _Database set-up:_
 * _CREATE DATABASE volunteer_tracker_
-* _CREATE TABLE projects_
-* _CREATE TABLE volunteers_
+* _CREATE TABLE projects (id serial PRIMARY KEY, name varchar, description text)_
+* _CREATE TABLE volunteers (id serial PRIMARY KEY, name varchar, skill varchar, project_id int)_
 _Ruby_
 * _you will need the gems required in the Gemfile within this repository_
 * _use command line to install needed gems_
