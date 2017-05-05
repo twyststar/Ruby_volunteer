@@ -38,3 +38,8 @@ post('/volunteers') do
   @project = Project.find(project_id)
   erb(:single_project)
 end
+
+get('/single_volunteer/:id') do
+  @volunteer = Volunteer.find(params.fetch('id').to_i())
+  erb(:single_volunteer)
+end
