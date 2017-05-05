@@ -2,23 +2,38 @@
 <h2><%=@project.description %></h2>
 <br>
 <div class="col-xs-6">
+  <h3>Volunteers:</h3>
+  <div class="well">
   <% if @volunteers.any?() %>
-    <h3>Here are the volunteers currently assigned to this project:</h3>
-    <p>Click on a volunteer to see or update their name or primary skill.</p>
-    <ul>
-      <% @volunteers.each() do |volunteer| %>
-      <% if volunteer.project_id == @project.id %>
-        <li><a href="/single_volunteer/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
+    <h4>Here are the volunteers currently assigned to this project:</h4>
+
+      <p>Click on a volunteer to see or update their name or primary skill.</p>
+      <ul>
+        <% @volunteers.each() do |volunteer| %>
+        <% if volunteer.project_id == @project.id %>
+          <li><a href="/single_volunteer/<%= volunteer.id() %>"><%= volunteer.name() %></a></li>
+          <% end %>
         <% end %>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>There are no volunteers yet!</p>
-  <% end %>
+      </ul>
+    <% else %>
+      <p>There are no volunteers yet!</p>
+    <% end %>
+  </div>
+  <div class="well">
+    <label for="">Back to Projects</label>
+    <br>
+    <a href="/home"><button class='btn btn-info'type="button" name="button">Home</button></a>
+    <form  action="/volunteer_clear/<%= @project.id() %>" method="post">
+      <label for="delete">Remove All Volunteers from this project:</label>
+      <input name="_method" type="hidden" value="delete">
+      <br>
+      <button type="submit" class="btn btn-danger"><strong>Remove</strong></button>
+    </form>
+  </div>
 </div>
 <div class="col-xs-6">
   <h3>Add a new volunteer to this project:</h3>
-  <form  action="/volunteers" method="post">
+  <form class="well" action="/volunteers" method="post">
     <div class="form-group">
       <input id="project_id" name="project_id" type="hidden" value="<%= @project.id() %>">
       <label class='form-label' for="name">Volunteer's Name:</label>
@@ -28,26 +43,33 @@
       <br>
       <input type="text" name="skill" id='skill' placeholder="Primary Skill" autofocus>
       <br>
-      <button type="submit" class="button btn btn-primary">Add Volunteer</button>
+      <button type="submit" class="btn btn-primary">Add Volunteer</button>
     </div>
   </form>
 
-  <form action="/single_project/<%= @project.id() %>" method="post">
+  <form class="well" action="/single_project/<%= @project.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
-
   <label for="name">Rename this project:</label>
+  <br>
   <input id="new_name" name="new_name" type="text">
+  <br>
+  <button type="submit" class="btn btn-success">Rename</button>
+  </form>
+  <br>
+  <form class="well" action="/single_project_desc/<%= @project.id() %>" method="post">
+  <input name="_method" type="hidden" value="patch">
   <label for="description">Change the description:</label>
+  <br>
   <input id="description" name="description" type="text">
   <br>
-  <button type="submit" class="btn btn-success">Update</button>
+  <button type="submit" class="btn btn-success">Change</button>
 </form>
 <br>
 
-<form action="/single_project/<%= @project.id() %>" method="post">
+<form class="well" action="/single_project/<%= @project.id() %>" method="post">
   <label for="delete">Delete this project:</label>
   <input name="_method" type="hidden" value="delete">
   <br>
-  <button type="submit" class="btn btn-danger">Delete this project</button>
+  <button type="submit" class="btn btn-danger"><strong>Delete</strong></button>
 </form>
 </div>

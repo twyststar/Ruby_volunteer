@@ -1,25 +1,37 @@
 <h1>Project Home:</h1>
 <div class="col-xs-6">
-  <% if @projects.any?() %>
-<p>Click on a project to see it's description and the volunteers assigned:</p>
-<ul>
-  <% @projects.each do |project| %>
-  <li><a href="/single_project/<%= project.id() %>"><%= project.name() %></a></li>
-  <% end %>
-</ul>
-<% else %>
-<p>There are no projects yet!</p>
-<% end %>
+  <h3>Current Projects:</h3>
+  <div class="well">
+    <% if @projects.any?() %>
+    <h4>Click on a project to see it's description and the volunteers assigned:</h4>
+    <ul>
+      <% @projects.each do |project| %>
+      <li><a href="/single_project/<%= project.id() %>"><%= project.name() %></a></li>
+      <% end %>
+    </ul>
+    <% else %>
+    <p>There are no projects yet!</p>
+    <% end %>
+  </div>
 </div>
 <div class="col-xs-6">
   <h3>Add a New Project:</h3>
-  <form  action="/projects" method="post">
+  <form class="well" action="/projects" method="post">
     <div class="form-group">
       <label class='form-label' for="name">Assign a name to your project:</label>
+      <br>
       <input type="text" name="name" id='name' placeholder="Project Name" autofocus>
+      <br>
       <label class='form-label' for="description">Add a brief description to your project:</label>
+      <br>
       <input type="text" name="description" id='description' placeholder="Project Description" autofocus>
-      <button type="submit" class="button btn">Add Project</button>
+      <br>
+      <button type="submit" class="btn btn-primary">Add Project</button>
     </div>
+  </form>
+  <form class="well bg-danger"action="/projects_clear" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <label for="delete_all">Warning! This will clear ALL records!</label>
+    <button class='btn btn-danger'type="submit">Delete All Projects</button>
   </form>
 </div>
