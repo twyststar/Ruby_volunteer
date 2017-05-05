@@ -25,7 +25,7 @@ _Running the app_
 
 ## Known Bugs
 
-_None_
+_Certain words entered into the project description field can cause errors (help, make)_
 
 ## Specs
 
