@@ -59,7 +59,7 @@ describe (Project) do
   end
 
   describe("#delete") do
-    it("lets you delete a list from the database") do
+    it("lets you delete a project from the database") do
       project = Project.new({:name => 'Kitten Wash', :description => 'Clean up messy little kittens for adoption.', :id => nil})
       project.save()
       project2 = Project.new({:name => 'Puppy Wash', :description => 'Clean up messy little puppies for adoption.', :id => nil})
